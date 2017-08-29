@@ -1,3 +1,8 @@
+package tk.avabin.dunglib
+
+/**
+ * @author Avabin
+ */
 class Warrior(name: String, progressions: ArrayList<ClassLevelProgression>, level: Int) : CharacterClass {
     override val name = name
         get() = field

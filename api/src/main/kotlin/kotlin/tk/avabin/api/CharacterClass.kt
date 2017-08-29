@@ -1,3 +1,5 @@
+package tk.avabin.dunglib
+
 /**
  * @author Avabin
  */
