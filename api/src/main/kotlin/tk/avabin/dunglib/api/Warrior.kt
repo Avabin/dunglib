@@ -1,4 +1,4 @@
-package tk.avabin.dunglib
+package tk.avabin.dunglib.api
 
 /**
  * @author Avabin
@@ -13,7 +13,7 @@ class Warrior(name: String, progressions: ArrayList<ClassLevelProgression>, leve
         get() = field
         set(value) {field = value}
 
-    fun levelUp(): Unit {
+    fun levelUp() {
         this.level++
     }
 }

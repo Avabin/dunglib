@@ -1,4 +1,4 @@
-package tk.avabin.dunglib
+package tk.avabin.dunglib.api
 
 /**
  * @author Avabin
