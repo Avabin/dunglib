@@ -19,12 +19,12 @@ class DiceArgument(arg: String) {
             dice = DiceFactory.translateToDice(diceName!!.value)
             this.dice = dice
         } catch (e: Exception) {
-            numArg = Integer.parseInt(arg)
+            numArg = Integer.parseInt(arg.replace(" ", ""))
         }
     }
 
     fun execute(): Int {
-        if(dice != null) return dice!!.roll()
+        if(dice != null) dice!!.roll()
         return numArg!!
     }
 }

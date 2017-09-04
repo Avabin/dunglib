@@ -9,6 +9,16 @@ object DiceCalculator {
         val minVal = 1
         var sum = 0
 
+        val args = argumentRegex.findAll(statement)
+
+        args.forEach { matchResult: MatchResult ->
+            sum += DiceArgument(matchResult.value).execute()
+        }
+
+        println("#################################\n" +
+                "###    STATEMENT:\n" +
+                "###    $statement\n" +
+                "###    SUM: $sum")
 
         return maxOf(minVal, sum)
     }
