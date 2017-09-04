@@ -8,22 +8,23 @@ import java.util.regex.Pattern
 class DiceArgument(arg: String) {
     private val diceRegex = Pattern.compile("[kd]+[0-9]+").toRegex()
     var dice: Dice? = null
+        get() = field
     var numArg: Int? = null
-
-    fun getArgument() {
-
-    }
+        get() = field
 
     init {
-        val diceName = diceRegex.find(arg)!!.value
+        val diceName: MatchResult? = diceRegex.find(arg)
         val dice: Dice?
         try {
-            dice = DiceFactory.translateToDice(diceName)
+            dice = DiceFactory.translateToDice(diceName!!.value)
             this.dice = dice
-        } catch (e: NoDiceException) {
-            try {
-
-            }
+        } catch (e: Exception) {
+            numArg = Integer.parseInt(arg)
         }
+    }
+
+    fun execute(): Int {
+        if(dice != null) return dice!!.roll()
+        return numArg!!
     }
 }

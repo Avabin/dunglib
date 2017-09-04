@@ -5,8 +5,10 @@ buildscript {
     ext.kotlin_version = '1.1.4-2'
 
     repositories {
-        mavenCentral()
-        jcenter()
+        maven {
+            url "http://repo1.maven.org/maven2"
+        }
+        maven { url "http://jcenter.bintray.com" }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -16,7 +18,9 @@ buildscript {
 apply plugin: 'kotlin'
 
 repositories {
-    mavenCentral()
+    maven {
+        url "http://repo1.maven.org/maven2"
+    }
 }
 
 dependencies {
