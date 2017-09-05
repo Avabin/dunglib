@@ -1,14 +1,27 @@
 package tk.avabin.dunglib.api.dices
 
-import java.util.regex.Pattern
-
 object DiceCalculator {
-    private val argumentRegex = Pattern.compile("[-+]?\\s*\\w+").toRegex()
-    private val diceArguments = ArrayList<DiceArgument>()
+    private val argumentRegex = Regex("[-+]?\\s*\\w+")
+    private val argumentDropRegex = Regex("[-+]?[0-9]+[dk][0-9]+\\s+dM..")
 
-    fun calculateFromStatement(statement: String): Int {
+    fun calculateFromStatement(s: String): Int {
+        var statement: String = s
         val minVal = 1
         var sum = 0
+
+        argumentDropRegex.findAll(statement).forEach { matchResult: MatchResult ->
+            run {
+                val arg = matchResult.value
+                if (arg.contains("dMin")) {
+                    statement = statement.replace(arg, "")
+                    sum += DiceArgument(argumentRegex.find(arg)!!.value).execute(dropMin = true)
+                }
+                if (arg.contains("dMax")) {
+                    statement = statement.replace(arg, "")
+                    sum += DiceArgument(argumentRegex.find(arg)!!.value).execute(dropMax = true)
+                }
+            }
+        }
 
         val args = argumentRegex.findAll(statement)
 
@@ -16,15 +29,11 @@ object DiceCalculator {
 
         println("#################################\n" +
                 "###    STATEMENT:\n" +
-                "###    $statement\n" +
+                "###    $s\n" +
                 "###    SUM: $sum\n" +
                 "###    RESULT: ${maxOf(minVal, sum)}")
 
 
         return maxOf(minVal, sum)
-    }
-
-    private fun parse(statement: String) {
-
     }
 }

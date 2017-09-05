@@ -34,10 +34,14 @@ class DiceArgument(arg: String) {
      * Execute method
      * @return dice roll or integer from argument
      */
-    fun execute(): Int {
+    fun execute(dropMin: Boolean = false, dropMax: Boolean = false): Int {
+        var rolls: ArrayList<Int> = ArrayList()
         if (dice != null) {
-            var sum = 0
-            for (x in 1..numOfRolls) sum += dice!!.roll()
+            var sum: Int
+            for (x in 1..numOfRolls) rolls.add(dice!!.roll())
+            sum = rolls.sum()
+            if (dropMin) sum -= rolls.min()!!
+            if (dropMax) sum -= rolls.max()!!
             if (sign == "-") sum = 0 - sum
             return sum
         }

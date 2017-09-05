@@ -11,7 +11,7 @@ interface Dice {
     val random: Random
 
     fun roll(): Int {
-        return min + (random.nextInt(max - min))
+        return min + (random.nextInt(maxOf(max - min, 1)))
     }
 
 }
