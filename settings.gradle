@@ -1,6 +1,0 @@
-rootProject.name = 'dunglib'
-include 'jvm'
-include 'api'
-include 'server'
-include 'client'
-

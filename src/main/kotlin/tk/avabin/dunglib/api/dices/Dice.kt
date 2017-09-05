@@ -6,9 +6,9 @@ import java.util.*
  * @author Avabin
  */
 interface Dice {
-    val random: Random
-    val max: Int
     val min: Int
+    val max: Int
+    val random: Random
 
     fun roll(): Int {
         return min + (random.nextInt(max - min))
