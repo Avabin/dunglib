@@ -16,7 +16,7 @@ class DiceCalculatorTest {
     fun complexStatementTest() {
         assert(DiceCalculator.calculateFromStatement("10 - 2 + 1") == 9)
         assert(DiceCalculator.calculateFromStatement("2k12 + 1k6 - 2") in 1..28)
-        assert(DiceCalculator.calculateFromStatement("2 - 1 + 1k3 - 5") in 1..1)
+        assert(DiceCalculator.calculateFromStatement("2 - 1 + 1k3 - 5") == 1)
         assert(DiceCalculator.calculateFromStatement("2 - 1") == 1)
     }
 

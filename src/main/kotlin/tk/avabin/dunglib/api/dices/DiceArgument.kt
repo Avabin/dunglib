@@ -35,7 +35,7 @@ class DiceArgument(arg: String) {
      * @return dice roll or integer from argument
      */
     fun execute(dropMin: Boolean = false, dropMax: Boolean = false): Int {
-        var rolls: ArrayList<Int> = ArrayList()
+        val rolls: ArrayList<Int> = ArrayList()
         if (dice != null) {
             var sum: Int
             for (x in 1..numOfRolls) rolls.add(dice!!.roll())
